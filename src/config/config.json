@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "username": "root",
+    "password": "root",
+    "database": "thesandbox",
+    "host": "mysqldb",
+    "dialect": "mysql",
+    "supplied": "v4.0.0"
+  }
+}

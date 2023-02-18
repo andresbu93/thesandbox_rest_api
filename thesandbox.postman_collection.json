@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "19446752-effb-4e1e-9e09-888dfb4fb43e",
+		"name": "thesandbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24166508"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"jon@example.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tutorials",
+			"item": [
+				{
+					"name": "create tutorial",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-tutorialtoken",
+								"value": "{{tutorialToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"New tutorial\",\n    \"description\": \"tutorial description\",\n    \"videoURL\": \"http://www.google.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/tutorials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tutorials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update tutorial",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\":\"update title 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/tutorials/2/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tutorials",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all tutorials",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/tutorials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tutorials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get tutorial by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/tutorials/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tutorials",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tutorial creation token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tutorialToken\", jsonData.token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/tutorials/token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tutorials",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a tutorial",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/tutorials/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tutorials",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete all tutorials",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/tutorials/mass_delete",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tutorials",
+								"mass_delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
